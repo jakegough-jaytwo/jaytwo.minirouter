@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45;netstandard1.3;netstandard1.6;netstandard2.0;netcoreapp3.0</TargetFrameworks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net45'">
+    <DefineConstants>$(DefineConstants);NETFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
+    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETCORE1</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD1</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.6'">
+    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETCORE1</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD1</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETCORE2</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD2</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
+    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETCORE3</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\jaytwo.MiniRouter\jaytwo.MiniRouter.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <AdditionalFiles Include="$(ProjectDir)..\..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <StyleCopTreatErrorsAsWarnings>true</StyleCopTreatErrorsAsWarnings>
+    <CodeAnalysisRuleSet>$(ProjectDir)..\..\stylecop.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers.Error" Version="1.0.2" />
+  </ItemGroup>
+
+</Project>
