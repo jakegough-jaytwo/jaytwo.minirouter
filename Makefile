@@ -1,5 +1,5 @@
 TIMESTAMP?=$(shell date +'%Y%m%d%H%M%S')
-DOCKER_TAG?=jaytwo_ejson
+DOCKER_TAG?=jaytwo_minirouter
 
 default: clean build
 
@@ -15,37 +15,30 @@ restore:
 	dotnet restore . --verbosity minimal
 
 build: restore
-	dotnet build ./jaytwo.ejson.sln
-
-run:
-	dotnet run --project ./src/jaytwo.ejson.GlobalTool -- --help
+	dotnet build ./jaytwo.MiniRouter.sln
 
 test: unit-test
 
 unit-test:
 	rm -rf out/testResults
 	rm -rf out/coverage
-	cd ./test/jaytwo.ejson.Tests; \
+	cd ./test/jaytwo.MiniRouter.Tests; \
 		dotnet test \
 		--results-directory ../../out/testResults \
-		--logger "trx;LogFileName=jaytwo.ejson.Tests.trx"
-	cd ./test/jaytwo.ejson.GlobalTool.Tests; \
-		dotnet test \
-		--results-directory ../../out/testResults \
-		--logger "trx;LogFileName=jaytwo.ejson.GlobalTool.Tests.trx"
+		--logger "trx;LogFileName=jaytwo.MiniRouter.Tests.trx"
 #	TODO: figure out how to get .NET Core 1.1 in the dockerfile
-#	cd ./test/jaytwo.ejson.example.AspNetCore1_1.IngegrationTests; \
+#	cd ./test/jaytwo.MiniRouter.example.AspNetCore1_1.IngegrationTests; \
 #		dotnet test \
 #		--results-directory ../../out/testResults \
-#		--logger "trx;LogFileName=jaytwo.ejson.example.AspNetCore1_1.IngegrationTests.trx";
-	cd ./test/jaytwo.ejson.example.AspNetCore2_1.IngegrationTests; \
+#		--logger "trx;LogFileName=jaytwo.MiniRouter.example.AspNetCore1_1.IngegrationTests.trx";
+	cd ./test/jaytwo.MiniRouter.example.AspNetCore2_1.IngegrationTests; \
 		dotnet test \
 		--results-directory ../../out/testResults \
-		--logger "trx;LogFileName=jaytwo.ejson.example.AspNetCore2_1.IngegrationTests.trx";
-	cd ./test/jaytwo.ejson.example.AspNetCore3_0.IngegrationTests; \
+		--logger "trx;LogFileName=jaytwo.MiniRouter.example.AspNetCore2_1.IngegrationTests.trx";
+	cd ./test/jaytwo.MiniRouter.example.AspNetCore3_0.IngegrationTests; \
 		dotnet test \
 		--results-directory ../../out/testResults \
-		--logger "trx;LogFileName=jaytwo.ejson.example.AspNetCore3_0.IngegrationTests.trx";
+		--logger "trx;LogFileName=jaytwo.MiniRouter.example.AspNetCore3_0.IngegrationTests.trx";
 	reportgenerator \
 		-reports:./out/coverage/**/coverage.cobertura.xml \
 		-targetdir:./out/coverage/ \
@@ -57,20 +50,11 @@ unit-test:
     
 pack:
 	rm -rf out/packed
-	cd ./src/jaytwo.ejson; \
-		dotnet pack -o ../../out/packed ${PACK_ARG}
-	cd ./src/jaytwo.ejson.GlobalTool; \
-		dotnet pack -o ../../out/packed ${PACK_ARG}
-	cd ./src/jaytwo.ejson.Configuration; \
+	cd ./src/jaytwo.MiniRouter; \
 		dotnet pack -o ../../out/packed ${PACK_ARG}
 
 pack-beta: PACK_ARG=--version-suffix beta-${TIMESTAMP}
 pack-beta: pack
-
-publish:
-	rm -rf out/published
-	cd ./src/jaytwo.ejson.GlobalTool; \
-		dotnet publish -o ../../out/published
 
 DOCKER_BUILDER_TAG?=${DOCKER_TAG}__builder
 DOCKER_BUILDER_CONTAINER?=${DOCKER_BUILDER_TAG}
