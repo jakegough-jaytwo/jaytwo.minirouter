@@ -29,6 +29,36 @@ namespace jaytwo.MiniRouter.example
                     });
                 });
 
+            yield return new MiniRoute(
+                canProcessDelegate: request =>
+                {
+                    return string.Equals(request.RelativePath, "xml", StringComparison.OrdinalIgnoreCase);
+                },
+                processRequestDelegate: request =>
+                {
+                    return Task.FromResult(new MiniWebServerResponse()
+                    {
+                        Body = Encoding.UTF8.GetBytes(@"<?xml version=""1.0"" encoding=""UTF-8""?><text><para>hello world</para></text>"),
+                        ContentType = "text/xml",
+                        StatusCode = 200,
+                    });
+                });
+
+            yield return new MiniRoute(
+                canProcessDelegate: request =>
+                {
+                    return string.Equals(request.RelativePath, "json", StringComparison.OrdinalIgnoreCase);
+                },
+                processRequestDelegate: request =>
+                {
+                    return Task.FromResult(new MiniWebServerResponse()
+                    {
+                        Body = Encoding.UTF8.GetBytes(@"{ ""text"": { ""para"":""hello world"" } }"),
+                        ContentType = "application/json",
+                        StatusCode = 200,
+                    });
+                });
+
             // default route last
             yield return new MiniRoute(
                 canProcessDelegate: request => true, // always true
