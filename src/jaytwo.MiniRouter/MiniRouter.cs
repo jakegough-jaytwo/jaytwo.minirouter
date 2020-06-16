@@ -23,16 +23,11 @@ namespace jaytwo.MiniRouter
         protected virtual IEnumerable<IMiniRoute> CreateRoutes()
         {
             yield return new MiniRoute(
-                canProcessDelegate: request => true,
-                processRequestDelegate: request =>
-                {
-                    return Task.FromResult(new MiniWebServerResponse()
-                    {
-                        Body = Encoding.UTF8.GetBytes($"{nameof(MiniRouter)} OK"),
-                        ContentType = "text/plain",
-                        StatusCode = 200,
-                    });
-                });
+                handler: new MiniHttpHandler(request =>
+                    new MiniWebServerResponse()
+                        .WithStatusCodeOK()
+                        .WithContentTypeTextPlain()
+                        .WithBody($"{nameof(MiniRouter)} OK")));
         }
     }
 }

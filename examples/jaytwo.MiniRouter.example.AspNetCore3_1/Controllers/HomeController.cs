@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-namespace jaytwo.MiniRouter.example.AspNetCore3_0.Controllers
+namespace jaytwo.MiniRouter.example.AspNetCore3_1.Controllers
 {
     public class HomeController : ControllerBase
     {

@@ -16,5 +16,17 @@ namespace jaytwo.MiniRouter
                 return await reader.ReadToEndAsync();
             }
         }
+
+        public static string GetHeaderValue(this MiniWebServerRequest request, string key)
+        {
+            return request.GetHeaderValues(key)?.FirstOrDefault();
+        }
+
+        public static string[] GetHeaderValues(this MiniWebServerRequest request, string key)
+        {
+            string[] values = null;
+            request?.Headers?.TryGetValue(key, out values);
+            return values;
+        }
     }
 }

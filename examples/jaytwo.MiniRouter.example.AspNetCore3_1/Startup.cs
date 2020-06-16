@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace jaytwo.MiniRouter.example.AspNetCore3_0
+namespace jaytwo.MiniRouter.example.AspNetCore3_1
 {
     public class Startup
     {

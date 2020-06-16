@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace jaytwo.MiniRouter.example.AspNetCore3_0.IngegrationTests
+namespace jaytwo.MiniRouter.example.AspNetCore3_1.IngegrationTests
 {
     public class BasicTests : IClassFixture<WebApplicationFactory>
     {
@@ -18,7 +18,7 @@ namespace jaytwo.MiniRouter.example.AspNetCore3_0.IngegrationTests
         {
             // Arrange
             var client = _fixture.CreateClient();
-            var expectedNamespace = typeof(example.AspNetCore3_0.Startup).Assembly.GetName().Name;
+            var expectedNamespace = typeof(example.AspNetCore3_1.Startup).Assembly.GetName().Name;
 
             // Act
             using (var response = await client.GetAsync("/"))

@@ -5,10 +5,10 @@ using jaytwo.SolutionResolution;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace jaytwo.MiniRouter.example.AspNetCore3_0.IngegrationTests
+namespace jaytwo.MiniRouter.example.AspNetCore3_1.IngegrationTests
 {
     public class WebApplicationFactory
-        : WebApplicationFactory<example.AspNetCore3_0.Startup>
+        : WebApplicationFactory<example.AspNetCore3_1.Startup>
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {

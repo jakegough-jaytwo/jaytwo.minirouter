@@ -57,11 +57,11 @@ namespace jaytwo.MiniRouter.AspNet
 
             if (httpRequest.Headers != null)
             {
-                miniRouterRequest.Headers = new Dictionary<string, string>();
+                miniRouterRequest.Headers = new Dictionary<string, string[]>();
 
                 foreach (var headerKey in httpRequest.Headers.AllKeys)
                 {
-                    miniRouterRequest.Headers[headerKey] = httpRequest.Headers[headerKey];
+                    miniRouterRequest.Headers[headerKey] = httpRequest.Headers.GetValues(headerKey);
                 }
             }
 
@@ -84,7 +84,10 @@ namespace jaytwo.MiniRouter.AspNet
                 {
                     foreach (var header in result.Headers)
                     {
-                        httpResponse.Headers[header.Key] = header.Value;
+                        foreach (var value in header.Value)
+                        {
+                            httpResponse.Headers.Add(header.Key, value);
+                        }
                     }
                 }
 

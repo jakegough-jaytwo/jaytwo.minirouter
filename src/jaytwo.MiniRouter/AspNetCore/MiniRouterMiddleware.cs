@@ -94,7 +94,7 @@ namespace jaytwo.MiniRouter.AspNetCore
 
             if (httpRequest.Headers != null)
             {
-                request.Headers = new Dictionary<string, string>();
+                request.Headers = new Dictionary<string, string[]>();
 
                 foreach (var header in httpRequest.Headers)
                 {

@@ -7,7 +7,7 @@ namespace jaytwo.MiniRouter
 {
     public class MiniWebServerRequest
     {
-        public IDictionary<string, string> Headers { get; set; }
+        public IDictionary<string, string[]> Headers { get; set; }
 
         public string Method { get; set; }
 

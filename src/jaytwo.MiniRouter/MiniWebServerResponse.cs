@@ -6,7 +6,7 @@ namespace jaytwo.MiniRouter
 {
     public class MiniWebServerResponse
     {
-        public IDictionary<string, string> Headers { get; set; }
+        public IDictionary<string, string[]> Headers { get; set; }
 
         public byte[] Body { get; set; }
 
