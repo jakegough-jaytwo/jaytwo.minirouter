@@ -1,65 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;netstandard1.3;netstandard1.6;netstandard2.0;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TargetFrameworks>net45;netstandard1.3;netstandard1.6;netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net45'">
-    <DefineConstants>$(DefineConstants);NETFRAMEWORK</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
-    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETCORE1</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETSTANDARD1</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.6'">
-    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETCORE1</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETSTANDARD1</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETCORE2</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETSTANDARD2</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
-    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETCORE3</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETCORE3</DefineConstants>
-  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\jaytwo.MiniRouter\jaytwo.MiniRouter.csproj" />
+  </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
     <Reference Include="System.Web" />
   </ItemGroup>
 
+  <!--
+    // https://docs.microsoft.com/en-us/dotnet/standard/frameworks
+    // preprocessor symbols for free:
+    //    NETFRAMEWORK, NET45,
+    //    NETSTANDARD, NETSTANDARD1_1, NETSTANDARD1_3, NETSTANDARD1_6, NETSTANDARD2_0, NETSTANDARD2_1
+  -->
+
+  <!-- stylecop -->
   <ItemGroup>
-    <ProjectReference Include="..\..\src\jaytwo.MiniRouter\jaytwo.MiniRouter.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
+    <PackageReference Include="StyleCop.Analyzers.Error" Version="1.0.2" PrivateAssets="All" />
     <AdditionalFiles Include="$(ProjectDir)..\..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 
   <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <StyleCopTreatErrorsAsWarnings>true</StyleCopTreatErrorsAsWarnings>
     <CodeAnalysisRuleSet>$(ProjectDir)..\..\stylecop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
-    <PackageReference Include="StyleCop.Analyzers.Error" Version="1.0.2" PrivateAssets="All" />
-  </ItemGroup>
+  <!-- /stylecop -->
 
 </Project>
