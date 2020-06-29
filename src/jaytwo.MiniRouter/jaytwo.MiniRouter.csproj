@@ -3,11 +3,10 @@
   <PropertyGroup>
     <TargetFrameworks>net45;netstandard1.3;netstandard1.6;netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
     <VersionPrefix>0.1.0</VersionPrefix>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/jakegough/jaytwo.MiniRouter.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType> 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
@@ -69,6 +68,7 @@
   </ItemGroup>
 
   <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <StyleCopTreatErrorsAsWarnings>true</StyleCopTreatErrorsAsWarnings>
     <CodeAnalysisRuleSet>$(ProjectDir)..\..\stylecop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
