@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\jaytwo.MiniRouter\jaytwo.MiniRouter.csproj" />
+    <ProjectReference Include="..\jaytwo.MiniRouter.example\jaytwo.MiniRouter.example.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.*" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.*" />
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.1.*" />
@@ -21,12 +26,10 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.*" />
   </ItemGroup>
 
+  <!-- stylecop -->
   <ItemGroup>
-    <ProjectReference Include="..\..\src\jaytwo.MiniRouter\jaytwo.MiniRouter.csproj" />
-    <ProjectReference Include="..\jaytwo.MiniRouter.example\jaytwo.MiniRouter.example.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
+    <PackageReference Include="StyleCop.Analyzers.Error" Version="1.0.2" PrivateAssets="All" />
     <AdditionalFiles Include="$(ProjectDir)..\..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 
@@ -35,10 +38,6 @@
     <StyleCopTreatErrorsAsWarnings>true</StyleCopTreatErrorsAsWarnings>
     <CodeAnalysisRuleSet>$(ProjectDir)..\..\stylecop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
-    <PackageReference Include="StyleCop.Analyzers.Error" Version="1.0.2" PrivateAssets="All" />
-  </ItemGroup>
+  <!-- /stylecop -->
 
 </Project>

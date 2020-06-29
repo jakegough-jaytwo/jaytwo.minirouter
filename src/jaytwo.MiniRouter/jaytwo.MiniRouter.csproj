@@ -6,15 +6,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/jakegough/jaytwo.MiniRouter.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType> 
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
-
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
-  </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
     <PackageReference Include="Newtonsoft.Json" Version="8.*" />
@@ -63,7 +55,23 @@
     //    NETFRAMEWORK, NET45,
     //    NETSTANDARD, NETSTANDARD1_1, NETSTANDARD1_3, NETSTANDARD1_6, NETSTANDARD2_0, NETSTANDARD2_1
   -->
+
+  <!-- sourcelink (only needed on the published package project) -->
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+  <!-- /sourcelink -->
+
+  <!-- stylecop -->
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
+    <PackageReference Include="StyleCop.Analyzers.Error" Version="1.0.2" PrivateAssets="All" />
     <AdditionalFiles Include="$(ProjectDir)..\..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 
@@ -72,19 +80,20 @@
     <StyleCopTreatErrorsAsWarnings>true</StyleCopTreatErrorsAsWarnings>
     <CodeAnalysisRuleSet>$(ProjectDir)..\..\stylecop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <!-- /stylecop -->
 
+  <!-- coverlet & cobertura -->
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
-    <PackageReference Include="StyleCop.Analyzers.Error" Version="1.0.2" PrivateAssets="All" />
+    <PackageReference Include="coverlet.msbuild" Version="2.9.0" PrivateAssets="All" />
   </ItemGroup>
 
   <PropertyGroup>
-    <UseSourceLink>true</UseSourceLink>
     <CollectCoverage>true</CollectCoverage>
     <Exclude>[xunit.*]*</Exclude>
     <ExcludeByAttribute>Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
     <CoverletOutputFormat>cobertura</CoverletOutputFormat>
     <CoverletOutput>$(MSBuildThisFileDirectory)../../out/coverage/$(AssemblyName)/$(TargetFramework)/</CoverletOutput>
   </PropertyGroup>
+  <!-- /coverlet & cobertura -->
 
 </Project>

@@ -5,26 +5,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="jaytwo.SolutionResolution" Version="0.1.0-beta-20190407052034" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.0.*" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.0.*" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
-    <PackageReference Include="Moq" Version="4.10.1" />
-    <PackageReference Include="xunit" Version="2.4.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-    <PackageReference Include="coverlet.msbuild" Version="2.6.1" />
+    <ProjectReference Include="..\..\examples\jaytwo.MiniRouter.example.AspNetCore3_1\jaytwo.MiniRouter.example.AspNetCore3_1.csproj" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <UseSourceLink>true</UseSourceLink>
-    <CollectCoverage>true</CollectCoverage>
-    <Exclude>[xunit.*]*</Exclude>
-    <ExcludeByAttribute>Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
-    <CoverletOutputFormat>cobertura</CoverletOutputFormat>
-    <CoverletOutput>$(MSBuildThisFileDirectory)../../out/coverage/$(AssemblyName)/$(TargetFramework)/</CoverletOutput>
-  </PropertyGroup>
-
   <ItemGroup>
+    <PackageReference Include="jaytwo.SolutionResolution" Version="0.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.*" />
+  </ItemGroup>
+
+  <!-- default test packages -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="Moq" Version="4.14.4" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.2" PrivateAssets="All" />
+  </ItemGroup>
+  <!-- /default test packages -->
+
+  <!-- stylecop -->
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
+    <PackageReference Include="StyleCop.Analyzers.Error" Version="1.0.2" PrivateAssets="All" />
     <AdditionalFiles Include="$(ProjectDir)..\..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 
@@ -33,14 +35,20 @@
     <StyleCopTreatErrorsAsWarnings>true</StyleCopTreatErrorsAsWarnings>
     <CodeAnalysisRuleSet>$(ProjectDir)..\..\stylecop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <!-- /stylecop -->
 
+  <!-- coverlet & cobertura -->
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
-    <PackageReference Include="StyleCop.Analyzers.Error" Version="1.0.2" PrivateAssets="All" />
+    <PackageReference Include="coverlet.msbuild" Version="2.9.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\examples\jaytwo.MiniRouter.example.AspNetCore3_1\jaytwo.MiniRouter.example.AspNetCore3_1.csproj" />
-  </ItemGroup>
+  <PropertyGroup>
+    <CollectCoverage>true</CollectCoverage>
+    <Exclude>[xunit.*]*</Exclude>
+    <ExcludeByAttribute>Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
+    <CoverletOutputFormat>cobertura</CoverletOutputFormat>
+    <CoverletOutput>$(MSBuildThisFileDirectory)../../out/coverage/$(AssemblyName)/$(TargetFramework)/</CoverletOutput>
+  </PropertyGroup>
+  <!-- /coverlet & cobertura -->
 
 </Project>
